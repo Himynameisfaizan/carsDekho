@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@font-face {
+    font-family: 'roboto-bold';
+    src: url(/public/storage/font/Roboto_Condensed-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'roboto-medium';
+    src: url(/public/storage/font/Roboto_Condensed-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'roboto-light';
+    src: url(/public/storage/font/Roboto_Condensed-Light.ttf);
+}
+
+@font-face {
+    font-family: 'roboto';
+    src: url(/public/storage/font/Roboto_Condensed-Regular.ttf);
+}
+
+body{
+    font-family: 'roboto';
+}
