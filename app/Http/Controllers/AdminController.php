@@ -12,4 +12,16 @@ class AdminController extends Controller
         return view('admin.admin', ['car'=>$car]);
     }
 
+    public function aadminBanner(){
+        return view('admin.banner');
+    }
+
+    public function aadminSearchedCar(){
+        return view('admin.searchCar');
+    }
+
+    public function aadminLatestCar(){
+        return view('admin.latestCar');
+    }
+
 }

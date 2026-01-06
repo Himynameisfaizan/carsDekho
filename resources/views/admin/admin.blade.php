@@ -12,39 +12,18 @@
     </head>
 
     <body>
-        <div class="w-full bg-[#F75D34] p-4">
-            <div class="h-full flex items-center justify-between px-6">
-                <div>
-                    <h1 class="text-white text-3xl font-[roboto-bold]">Faizan Dashboard </h1>
-                </div>
-                <div class="active:scale-95">
-                    <i class="text-[#24272C] text-2xl cursor-pointer rounded-full p-2 bg-white ri-user-line"></i>
-                </div>
+    @include('admin.include.header')
+        <div class="w-[80%] float-right mt-20 flex justify-between px-8 py-5">
+            <div>
+                @foreach($car as $data)
+                <h1>{{ $data->name }}</h1>
+                @endforeach
+            </div>
+            <div>
+                <a href="#" class="bg-[#f75d34] text-white text-sm px-4 py-2 rounded">Add Car</a>
             </div>
         </div>
 
-        <div class="w-full h-screen flex">
-            <div class="w-[15%] h-[90vh] bg-[#24272C]">
-            <div class="flex flex-col justify-around items-center pt-15">
-                <ul class="flex flex-col gap-5 w-full px-3">
-                    <li class="text-xl font-[roboto-medium] hover:bg-[#f75d34] duration-200 text-white rounded-lg cursor-pointer p-1.5"><i class="ri-contacts-line mr-2"></i> Home</li>
-                    <li class="text-xl font-[roboto-medium] hover:bg-[#f75d34] duration-200 text-white rounded-lg cursor-pointer p-1.5"><i class="ri-image-line mr-2"></i> Banner</li>
-                    <li class="text-xl font-[roboto-medium] hover:bg-[#f75d34] duration-200 text-white rounded-lg cursor-pointer p-1.5"><i class="ri-car-line mr-2"></i> Searched Car</li>
-                    <li class="text-xl font-[roboto-medium] hover:bg-[#f75d34] bg-[#f75d34] duration-200 text-white rounded-lg cursor-pointer p-1.5"><i class="ri-roadster-line mr-2"></i> Latest Car</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="w-[85%] m-auto text-center">
-
-            @foreach($car as $data)
-
-            <h1>{{ $data->name }}</h1>
-
-            @endforeach
-        </div>
-
-        </div>
     </body>
 
     </html>
