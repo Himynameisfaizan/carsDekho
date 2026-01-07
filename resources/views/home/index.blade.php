@@ -10,8 +10,9 @@
 </head>
 
 <body>
-    <div>
-        <h1>This is home page</h1>
+    @include('home.include.header')
+    <div class="relative">
+       <img src="" alt="">
     </div>
 </body>
 
