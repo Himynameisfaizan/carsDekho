@@ -4,60 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin | Edit Car</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
 </head>
 
-<body>
+<body class="bg-gray-100">
+
     @include('admin.include.header')
-    <div class="w-[80%] float-right left-20 mt-20 flex flex-col justify-between px-8 py-5">
-        <div>
-            <h1 class="text-3xl font-[roboto-bold] text-center">Upload Latest car</h1>
+
+    <div class="p-4 md:ml-64 mt-16 transition-all duration-300">
+        
+        <div class="mb-6 flex items-center gap-2">
+            <a href="/admin/latest-car" class="bg-white p-2 rounded-full shadow-sm text-gray-600 hover:text-[#f75e34] transition">
+                <i class="ri-arrow-left-line text-xl"></i>
+            </a>
+            <h1 class="text-2xl font-bold text-gray-800">Edit Car Details</h1>
         </div>
-        <div>
-            <form action="/admin/edit-cars/{{ $cars->id }}" method="post" enctype="multipart/form-data" class="mt-5 w-full flex flex-col gap-2">
-                @csrf
-                @method('PUT')
-                <label class="mt-5 font-[roboto-medium]">Update Car title</label>
-                <select name="name" class="border border-[#0000005d] p-2 rounded w-[50%] outline outline-[#f75e348a]">
-                    <option value="sadn">Sadan</option>
-                    <option value="suv">suv</option>
-                    <option value="hedbatch">hedbacth</option>
-                </select>
-                <label class="mt-5 font-[roboto-medium]">Update Car Price</label>
-                <input class="border border-[#0000005d] p-2 rounded w-[50%] outline outline-[#f75e348a]" required type="number" name="price" value="{{ $cars->price }}">
 
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <div class="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">Update Information</h2>
+                
+                <form action="/admin/edit-cars/{{ $cars->id }}" method="post" enctype="multipart/form-data" class="flex flex-col gap-4">
+                    @csrf
+                    @method('PUT')
+                    
+                    <div class="flex flex-col gap-2">
+                        <label class="font-medium text-gray-700">Car Name (Model)</label>
+                        <select name="name" class="border border-gray-300 p-2.5 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#f75e34]">
+                            <option value="sedan" {{ $cars->car_name == 'sedan' ? 'selected' : '' }}>Sedan</option>
+                            <option value="suv" {{ $cars->car_name == 'suv' ? 'selected' : '' }}>SUV</option>
+                            <option value="hatchback" {{ $cars->car_name == 'hedbatch' || $cars->car_name == 'hatchback' ? 'selected' : '' }}>Hatchback</option>
+                        </select>
+                    </div>
 
-                <label class="mt-5 font-[roboto-medium]">Update Category</label>
-                <select name="category" class="border border-[#0000005d] p-2 rounded w-[50%] outline outline-[#f75e348a]">
-                    <option value="latest">Latest Car Section</option>
-                    <option value="most_searched">Most Searched Car Section</option>
-                </select>
+                    <div class="flex flex-col gap-2">
+                        <label class="font-medium text-gray-700">Update Price (₹)</label>
+                        <input class="border border-gray-300 p-2.5 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#f75e34]" 
+                               required type="number" name="price" value="{{ $cars->price }}">
+                    </div>
 
-                <label class="mt-5 font-[roboto-medium]">Update Car Image</label>
-                <input class="border border-[#0000005d] p-2 rounded w-[50%] outline outline-[#f75e348a]" required type="file" name="imageUpload">
-                <input class="border border-[#0000005d] px-1 py-2 active:scale-95 cursor-pointer font-[roboto-bold] rounded bg-[#f75e34] text-white w-[15%] outline outline-[#f75e348a]" type="submit" value="Upload image">
+                    <div class="flex flex-col gap-2">
+                        <label class="font-medium text-gray-700">Update Category</label>
+                        <select name="category" class="border border-gray-300 p-2.5 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-[#f75e34]">
+                            <option value="latest" {{ $cars->category == 'latest' ? 'selected' : '' }}>Latest Car Section</option>
+                            <option value="most_searched" {{ $cars->category == 'most_searched' ? 'selected' : '' }}>Most Searched Car Section</option>
+                        </select>
+                    </div>
 
-            </form><br>
-            <div class="mt-5 w-full flex flex-col gap-2">
-                <h1 class="font-[roboto-bold] text-3xl text-center">Current status</h1>
-                <label class="mt-5 font-[roboto-medium]">Car title</label>
-                <input class="border border-[#0000005d] p-2 rounded w-[50%] outline outline-[#f75e348a]" type="text" value="{{ $cars->car_name }}">
-                <label class="mt-5 font-[roboto-medium]">Update Car Price</label>
-                <input class="border border-[#0000005d] p-2 rounded w-[50%] outline outline-[#f75e348a]" required type="number" name="price" value="{{ $cars->price }}">
+                    <div class="flex flex-col gap-2">
+                        <label class="font-medium text-gray-700">Update Car Image <span class="text-xs text-gray-400 font-normal">(Leave empty to keep current)</span></label>
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none p-2" 
+                               type="file" name="imageUpload">
+                    </div>
 
-
-                <label class="mt-5 font-[roboto-medium]">Category</label>
-                <input class="border border-[#0000005d] p-2 rounded w-[50%] outline outline-[#f75e348a]" type="text" value="{{ $cars->category }}">
-
-                <label class="mt-5 font-[roboto-medium]">Car Image</label>
-                <img class="w-40 h-24 object-cover border" src="{{ asset('storage/'.$cars->car_image_path) }}" alt="">
-
+                    <div class="mt-4">
+                        <input class="px-6 py-2.5 bg-[#f75e34] hover:bg-orange-600 text-white font-bold rounded-lg cursor-pointer transition-colors shadow-sm w-full md:w-auto" 
+                               type="submit" value="Update Car Details">
+                    </div>
+                </form>
             </div>
+
+
+            <div class="lg:col-span-1 bg-gray-50 rounded-lg border border-gray-200 p-6 h-fit">
+                <h2 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">Current Status</h2>
+                
+                <div class="flex flex-col gap-4">
+                    <div class="w-full h-48 rounded-lg overflow-hidden border border-gray-300 bg-white">
+                        <img class="w-full h-full object-cover" src="{{ asset('storage/'.$cars->car_image_path) }}" alt="Current Car Image">
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Current Name</span>
+                            <div class="font-medium text-gray-800 capitalize">{{ $cars->car_name }}</div>
+                        </div>
+                        
+                        <div>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Current Price</span>
+                            <div class="font-medium text-gray-800">₹ {{ number_format($cars->price) }}</div>
+                        </div>
+
+                        <div>
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Current Category</span>
+                            <div class="font-medium text-gray-800">
+                                <span class="bg-gray-200 px-2 py-1 rounded text-xs">{{ $cars->category }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-
     </div>
-</body>
 
+</body>
 </html>

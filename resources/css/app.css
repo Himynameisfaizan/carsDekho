@@ -30,6 +30,15 @@
     src: url(/public/storage/font/Roboto_Condensed-Regular.ttf);
 }
 
-body{
+body {
     font-family: 'roboto';
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    color: #f75e34;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #f75e34 !important;
 }
