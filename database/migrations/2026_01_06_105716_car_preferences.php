@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('car_preferences', function(Blueprint $table){
          $table->id();
-        $table->unsignedBigInteger('car_lead_id'); // Foreign Key
-        $table->string('car_type'); // SUV, Sedan, etc.
+        $table->unsignedBigInteger('car_lead_id'); 
+        $table->string('car_type'); 
         $table->timestamps();
-
-        // Relation jod rahe hain (Optional but good practice)
         $table->foreign('car_lead_id')->references('id')->on('car_leads')->onDelete('cascade');
         });
     }
