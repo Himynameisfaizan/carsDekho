@@ -52,7 +52,7 @@ class CarController extends Controller
     {
         $cars = Car::find($id);
 
-        return view('admin.editCars', ['cars' => $cars]);
+        return view('admin.editcars', ['cars' => $cars]);
     }
 
     public function editCarImage(Request $request, $id)
